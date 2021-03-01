@@ -3,94 +3,52 @@ import {
   CodeSurferColumns,
   Step,
 } from "code-surfer";
-import { github, vsDark } from "@code-surfer/themes";
+import { dracula, shadesOfPurple } from "@code-surfer/themes";
 
-export const theme = vsDark;
+export const theme = shadesOfPurple;
 
-# Hello 👋
+# Music In The Browser 🎶
 
-You are using [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us)
+With [Tone.js](https://tonejs.github.io/) 
+
+---
+
+## What we'll learn
+
+
+- How to create synths with Tone.js
+
+- Leverage libraries to make songs
+
+- Utilize creative-coding to build interactive media
+
+---
+
+## About this workshop
+
+- Watch or **code along** with companion modules
+
+- Plug in some headphones and use a **safe volume level**
+
+*Let's get started!*
 
 ---
 
 <CodeSurfer>
 
-```js title="This is a title" subtitle="and this a subtitle"
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
+```js title="Hello Tone" subtitle="Let's play our first note!"
+import * as Tone from 'tone'
 
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
+  const synth = new Tone.Synth().toDestination();
 
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
+  synth.triggerAttackRelease("A4", "8n");
 ```
 
-```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
+```diff 3 subtitle="Create a new synth instrument"
 
-function adipiscing(...elit) {
-  if (!elit.sit) {
-    return [];
-  }
-
-  const sed = elit[0];
-  return eiusmod.tempor(sed) ? sed : [sed];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
 ```
 
-```diff 1[10:14],2[15:19],3[22:27],10:12
+```diff 5 subtitle="Trigger an A that lasts an 8th note"
 
 ```
 
@@ -98,16 +56,16 @@ function incididunt(ipsum, ut = 1) {
 
 ---
 
-<CodeSurferColumns themes={[vsDark, github]}>
+<CodeSurferColumns themes={[shadesOfPurple, dracula]}>
 
 <Step>
 
-```js
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+```js title="FM Synthesizer" 
+fmSynth.triggerAttackRelease("A4", "8n");
 ```
 
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
+```js title="AM Synthesizer" 
+amSynth.triggerAttackRelease("A4", "8n");
 ```
 
 </Step>
@@ -115,31 +73,23 @@ const minim = (ad, enim) => dolore.magna(ad / enim);
 <Step>
 
 ```js
-const lorem = (ipsum, dolor, sit) => {
-  const amet = dolor - ipsum;
-  return consectetur.adipiscing(
-    {
-      elit: sed.eiusmod(sit - dolor) / amet + 2,
-    },
-    (tempor, incididunt) => ipsum + amet * incididunt
-  );
-};
+import * as Tone from 'tone'
+        
+// FM Synth
+const fmSynth = new Tone.FMSynth().toDestination();
 
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+//  .triggerAttackRelease makes a note sound
+fmSynth.triggerAttackRelease("A4", "8n");
 ```
 
 ```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
+import * as Tone from 'tone'
+        
+// AM Synth
+const amSynth = new Tone.AMSynth().toDestination();
 
-const sed = (eiusmod, tempor, incididunt) => {
-  const ut = tempor - eiusmod;
-  return labore.et(
-    {
-      amet: dolore.magna(incididunt - tempor) / ut + 2,
-    },
-    (aliqua, elit) => eiusmod + ut * elit
-  );
-};
+//  .triggerAttackRelease makes a note sound
+amSynth.triggerAttackRelease("A4", "8n");
 ```
 
 </Step>
@@ -148,5 +98,36 @@ const sed = (eiusmod, tempor, incididunt) => {
 
 ---
 
-docs:  
-[codesurfer.pomb.us](https://codesurfer.pomb.us)
+<CodeSurfer>
+
+```js title="Sampler Instrument" subtitle="Loading an mp3 file"
+import * as Tone from 'tone'
+        
+const player = new Tone.Player("https://tonejs.github.io/audio/berklee/drum_low_1.mp3").toDestination();
+
+function playSample() {
+  Tone.loaded().then(() => {
+  player.start();
+  });
+}
+```
+
+```diff 3 subtitle="Initialize a new player variable"
+
+```
+
+```diff 5 subtitle="Build a function to load audio"
+
+```
+
+```diff 7 subtitle="Start the audio after the mp3 has loaded"
+
+```
+
+
+</CodeSurfer>
+
+---
+
+#toDestination
+
