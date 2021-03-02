@@ -1,6 +1,6 @@
-# MDX Deck + Code Surfer template
+# Tone.js Workshop Presentation
 
-This project was generated with the `npm init code-surfer-deck` command.
+Slide deck for my intro to Tone.js and Reactronica presentations
 
 ## Development
 
@@ -20,4 +20,4 @@ To build the presentation deck:
 npm run build
 ```
 
-For more documentation see [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us/)
+Built with [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us/)
