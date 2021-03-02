@@ -16,9 +16,9 @@ With [Tone.js](https://tonejs.github.io/)
 ## What we'll learn
 
 
-- How to create synths with Tone.js
+- How to create instruments with Tone.js
 
-- Leverage libraries to make songs
+- Leverage libraries to create songs
 
 - Utilize creative-coding to build interactive media
 
@@ -129,5 +129,130 @@ function playSample() {
 
 ---
 
-#toDestination
+# Let's map these notes to buttons, shall we?
 
+---
+
+
+## Enter **Reactronica**
+
+- We can extend the functionality of Tone.js with 3P libraries
+
+- Reactronica componentizes Songs, Tracks, and Instruments
+
+*It's about to get funky in here! 🎶*
+
+---
+
+<CodeSurfer>
+
+```js 5,35 title="Reactronica Song" subtitle="Song is the top level component"
+  import { Song, Track, Instrument, Effect } from 'reactronica'
+    
+    const DemoSong = () => {
+      return (
+        <Song isPlaying={play} bpm={110}>
+            <Track
+                steps={['Eb4','G4','F4','Ab4']}
+                volume={-12}
+            >
+                <Instrument type="duoSynth" />
+                <Effect type="reverb" />
+            </Track>
+
+            <Track
+                steps={[null, ['A1'], null, ['A1']]}
+                volume={-10}
+            >
+                <Instrument 
+                type="pluckSynth" 
+                envelope={{
+                    attack: 0.001,
+                    decay: 0.15,
+                    sustain: 0,
+                    release:  0.03
+                }}
+                />
+            </Track>
+
+            <Track
+                steps={[['D1', 'D1', 'D1', 'D1']]}
+            >
+                <Instrument type="membraneSynth" />
+            </Track>
+
+        </Song>
+      )
+    }
+```
+
+```diff 6,12 subtitle="Each song is made up of tracks"
+
+```
+
+```diff 7 subtitle="We can pass in an array of notes to play"
+
+```
+
+```diff 10 subtitle="We use the instrument component to pick our synth sound"
+
+```
+
+```diff 32 subtitle="And our drum kick"
+
+```
+
+```js title="Reactronica Song" subtitle="Let's give this song a listen!"
+  import { Song, Track, Instrument, Effect } from 'reactronica'
+    
+    const DemoSong = () => {
+      return (
+        <Song isPlaying={play} bpm={110}>
+            <Track
+                steps={['Eb4','G4','F4','Ab4']}
+                volume={-12}
+            >
+                <Instrument type="duoSynth" />
+                <Effect type="reverb" />
+            </Track>
+
+            <Track
+                steps={[null, ['A1'], null, ['A1']]}
+                volume={-10}
+            >
+                <Instrument 
+                type="pluckSynth" 
+                envelope={{
+                    attack: 0.001,
+                    decay: 0.15,
+                    sustain: 0,
+                    release:  0.03
+                }}
+                />
+            </Track>
+
+            <Track
+                steps={[['D1', 'D1', 'D1', 'D1']]}
+            >
+                <Instrument type="membraneSynth" />
+            </Track>
+
+        </Song>
+      )
+    }
+```
+
+
+</CodeSurfer>
+
+---
+
+# What have we learned?
+
+- How to play synth notes with **Tone.js**
+- How create multi-track songs with **Reactronica**
+- How to leverage code to build fun and interactive creative media! 🙌🏽
+
+*Thank you!*
+
+## ❓❓ Q+A Time ❓❓
