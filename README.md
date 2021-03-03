@@ -1,6 +1,6 @@
 # Tone.js Workshop Presentation
 
-Slide deck for my intro to Tone.js and Reactronica presentations
+Slide deck for my intro to Tone.js and Reactronica presentation.
 
 ## Development
 
